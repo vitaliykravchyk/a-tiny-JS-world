@@ -40,7 +40,7 @@ const cat = {
     phrase: 'Meeeeooow',
 }
 const catWomen = {
-    species: 'woman',
+    species: 'catwoman',
     name: 'Emma',
     hands: 2,
     legs: 2,
