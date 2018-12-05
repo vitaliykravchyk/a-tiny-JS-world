@@ -7,64 +7,40 @@
 
 // ======== OBJECTS DEFINITIONS ========
 // Define your objects here
-const man = {
-    species: 'human',
-    name: 'Garry',
-    hands: 2,
-    legs: 2,
-    gender: 'male',
-    phrase: 'Hi hello good bye',
+let Creature = function(species, name, hands, legs, gender, phrase){
+    this.species = species;
+    this.name = name;
+    this.hands = hands;
+    this.legs = legs;
+    this.gender = gender;
+    this.phrase = phrase;
+    this.friendList = [];
 }
-const women = {
-    species: 'human',
-    name: 'Lori',
-    hands: 2,
-    legs: 2,
-    gender: 'female',
-    phrase: 'Girl PWR',
-}
-const dog = {
-    species: 'dog',
-    name: 'Garold',
-    hands: 0,
-    legs: 4,
-    gender: 'male',
-    phrase: 'Woof-woof',
-}
-const cat = {
-    species: 'cat',
-    name: 'Jinny',
-    hands: 0,
-    legs: 4,
-    gender: 'female',
-    phrase: 'Meeeeooow',
-}
-const catWomen = {
-    species: 'catwoman',
-    name: 'Emma',
-    hands: 2,
-    legs: 2,
-    gender: 'female',
-}
-function friends(...friend){
-    let friendList = [];
+Creature.prototype.friends = function(...friend){
     friend.forEach(element => {
-       friendList.push(element.name);
-    });
-    return friendList;
+                this.friendList.push(element.name);
+            });
 }
-man.friendList = friends(women, dog);
-women.friendList = friends(man, cat);
-cat.friendList = friends(women, catWomen);
-dog.friendList = friends(man);
-catWomen.friendList = friends(cat);
-catWomen.phrase = cat.phrase;
+const man = new Creature('human', 'Garry', 2, 2, 'male', 'Hi hello good bye');
+const women = new Creature('human', 'Lori', 2, 2, 'female', 'Girl PWR');
+const dog = new Creature('dog', 'Garold', 0, 4, 'male', 'Woof-woof');
+const cat = new Creature('cat', 'Jinny', 0, 4, 'female', 'Meeeeooow');
+const catWomen = new Creature('catwoman', 'Emma', 2, 2, 'female', cat.phrase);
+
+man.friends(women, dog);
+women.friends(man, cat);
+cat.friends(women, catWomen);
+dog.friends(man);
+catWomen.friends(cat);
+function info(obj){
+    return obj.species + ';' + obj.name + ';' + obj.hands + ';' + obj.legs + ';' + obj.gender + ';' + obj.phrase + ';' + obj.friendList;
+}
 // ======== OUTPUT ========
-print(man.species + ';' + man.name + ';' + man.hands + ';' + man.legs + ';' + man.gender + ';' + man.phrase + ';' + man.friendList);
-print(women.species + ';' + women.name + ';' + women.hands + ';' + women.legs + ';' + women.gender + ';' + women.phrase + ';' + women.friendList);
-print(dog.species + ';' + dog.name + ';' + dog.hands + ';' + dog.legs + ';' + dog.gender + ';' + dog.phrase + ';' + dog.friendList);
-print(cat.species + ';' + cat.name + ';' + cat.hands + ';' + cat.legs + ';' + cat.gender + ';' + cat.phrase + ';' + cat.friendList);
-print(catWomen.species + ';' + catWomen.name + ';' + catWomen.hands + ';' + catWomen.legs + ';' + catWomen.gender + ';' + catWomen.phrase + ';' + catWomen.friendList);
+print(info(man));
+print(info(women));
+print(info(dog));
+print(info(cat));
+print(info(catWomen));
 /* Use print(message) for output.
    Default tag for message is <pre>. Use print(message,'div') to change containing element tag.
 
